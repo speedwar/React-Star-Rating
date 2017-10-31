@@ -1,0 +1,29 @@
+/* This file contains purely Dirty hacks to be cleaned up - moved to other
+ * files. See: http://csswizardry.com/2013/04/shame-css/
+ */
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, sans-serif;
+}
+
+#root,
+.app-demo {
+  height: 100%;
+  width: 100%;
+}
+
+// NOTE: style for DEMO
+.app-demo-container {
+  @extend .h-center-pos;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+}
