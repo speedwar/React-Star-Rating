@@ -12,7 +12,7 @@ $pf-rating-box-shadow: inset 0 0 1px 1px $g-color-border;
   box-shadow: $pf-rating-box-shadow;
   border: 1px solid $g-color-border;
   border-radius: $g-form-radius;
-  height: rem($pf-rating-height);
+  //height: rem($pf-rating-height);
   padding: rem($g-spacing-x-large);
   width: rem($pf-rating-width);
   
@@ -27,12 +27,16 @@ $pf-rating-box-shadow: inset 0 0 1px 1px $g-color-border;
   margin-bottom: rem($g-spacing);
 }
 
-.pf-rating__btn {
-  margin-left: rem($g-spacing-x-small);
+.pf-rating__button {
+  padding: 0 rem($g-spacing-2x-small);
   
   &:first-child {
-    margin-left: 0;
+    margin-left: rem(-$g-spacing-x-small);
   }
+}
+
+.pf-rating__button.is-selected svg path {
+   fill: $g-color-blue;
 }
 
 .pf-rating-modal {
@@ -58,13 +62,13 @@ $pf-rating-box-shadow: inset 0 0 1px 1px $g-color-border;
   letter-spacing: 0.5px;
 }
 
-.pf-rating-view-mode {
+.pf-rating-read-only {
   border: 1px solid $g-color-border;
   border-radius: $g-form-radius;
   padding: rem($g-spacing-large) rem($g-spacing-x-large);
 }
 
-.pf-rating-view-mode__title {
+.pf-rating-read-only__title {
   color: $g-color-text;
   font-weight: $g-font-weight-light;
   font-size: rem($g-font-size-large);

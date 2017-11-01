@@ -1,18 +1,21 @@
 {
-  "name": "React Star Rating Component by Jimmy Lee",
+  "name": "ui-app",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "build-css": "node-sass-chokidar src/assets/scss/style.scss -o src/ && npm run autoprefixer",
+    "watch-css": "npm run build-css && node-sass-chokidar src/assets/scss/style.scss -o src/ --watch --recursive",
+    "start": "concurrently \"react-scripts-ts start\" \"npm run watch-css\" \"npm run svg\"",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject",
+    "autoprefixer": "postcss -m true -u autoprefixer -r \"src/style.css\"",
+    "svg:min": "svgo -f ./src/assets/icons -o ./src/assets/icons/optimized",
+    "svg": "npm run svg:min"
+  },
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
-  },
-  "scripts": {
-    "build-css": "node-sass-chokidar src/assets/scss/style.scss -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/assets/scss/style.scss -o src/ --watch --recursive",
-    "start": "concurrently \"react-scripts-ts start\" \"npm run watch-css\"",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
     "@types/jest": "^21.1.5",
@@ -20,10 +23,23 @@
     "@types/react": "^16.0.18",
     "@types/react-dom": "^16.0.2",
     "@types/classnames": "^2.2.3",
-    "node-sass-chokidar": "0.0.3",
-    "concurrently": "^3.1.0",
+    "autoprefixer": "^7.1.6",
+    "babel-polyfill": "^6.23.0",
     "classnames": "2.2.5",
+    "concurrently": "^3.1.0",
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "node-sass-chokidar": "0.0.3",
+    "postcss": "^6.0.13",
+    "postcss-cli": "^4.1.1",
+    "postcss-loader": "^2.0.8",
     "shell-csslib": "2.1.0",
+    "svgo": "0.7.2",
+    "stylelint": "^8.2.0",
+    "stylelint-order": "0.7.0",
     "typescript": "2.3.3"
   }
 }

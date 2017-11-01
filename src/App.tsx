@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {PfStarRating} from './components/index';
+import { PfRating } from './components/index';
 
 interface Props {
 }
@@ -15,12 +15,11 @@ export default class App extends React.Component<Props, {}> {
     return (
       <div className="app-demo">
         <div className="app-demo-container">
-          <PfStarRating count={5} />
+          <PfRating count={5} />
           <br />
-          <PfStarRating count={5} viewMode={true} />
+          <PfRating count={5} rating={1} readOnly={true} />
         </div>
       </div>
     );
   }
 }
-

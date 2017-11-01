@@ -1,2 +1,2 @@
 export {PfIcon} from './PfIcon/PfIcon';
-export {PfStarRating} from './PfStarRating/PfStarRating';
+export {PfRating} from './PfRating/PfRating';

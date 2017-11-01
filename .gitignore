@@ -19,3 +19,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# CSS
+src/style.css
+src/style.css.map
+
+# Icons
+/src/assets/icons/optimized

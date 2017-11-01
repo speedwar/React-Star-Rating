@@ -1,34 +1,45 @@
-import * as React from "react";
-import * as cx from "classnames";
-
-// FIXME: Replace with inlineSVG
-const star = require('../../assets/icons/ic_star.svg');
+import * as React from 'react';
 
 class Props {
-  icon: string;
-  alt: string;
+  id: string;
+  label: string;
   style?: string;
+  hasAriaHidden?: boolean;
 }
 
-class State {
-  iconType: string;
-}
-
-export class PfIcon extends React.Component<Props, State> {
+export class PfIcon extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      iconType: ""
-    };
   }
 
-  
   public render() {
+    /* 
+     * TODO: Use ReactInlineSVG module to load SVGs
+     * Directly imported from sketch
+     */
+    const starSVG = (
+      <svg
+        width="28"
+        height="25"
+        viewBox="0 0 28 25"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-labelledby={this.props.label}
+        aria-hidden={this.props.hasAriaHidden}
+      >
+        <title>{this.props.label}</title>
+        <path
+          d="M13.79 20.25l-8.523 4.172 1.628-8.836L0 9.328 9.529 8.04 13.79 0l4.262 8.04 9.529 1.288-6.896 6.258 1.628 8.836z"
+          fill="#E3E6E9"
+          fillRule="evenodd"
+        />
+      </svg>
+    );
+
     return (
-      <img
-        src={(this.props.icon === "star") && star} //NOTE: Quick hack to load star icon
-        className={cx(this.props.style)}
-        alt={this.props.alt} />
+      <span>
+        {this.props.id === 'star' && starSVG}
+      </span>
     );
   }
 }
