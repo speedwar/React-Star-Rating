@@ -11,7 +11,7 @@ class Props {
 class State {
   storedRating: number;
   tempRating: number;
-  applyClicked: boolean;
+  isApplied: boolean;
 }
 
 // Mock data
@@ -27,25 +27,17 @@ export class PfRating extends React.Component<Props, State> {
   public constructor(props: Props) {
     super(props);
     this.state = {
-      storedRating: this.props.rating || NaN,
-      tempRating: NaN,
-      applyClicked: false
+      storedRating: this.props.rating || 0,
+      tempRating: 0,
+      isApplied: false
     };
   }
 
-  handleApplyEvent() {
-    this.setState({ applyClicked: true });
-  }
-
-  handleStarEvent(i: number) {
-    this.setState({ storedRating: this.state.tempRating });
-  }
-
-  onStarMouseOver(i: number) {
+  onIconMouseOver(i: number) {
     this.setState({ tempRating: i });
   }
 
-  onStarMouseOut(i: number) {
+  onIconMouseOut() {
     this.setState({ tempRating: this.state.storedRating });
   }
 
@@ -68,14 +60,14 @@ export class PfRating extends React.Component<Props, State> {
           type="button"
           tabIndex={0}
           className={cx('pf-button-icon pf-rating__button', buttonClass)}
-          onClick={this.handleStarEvent.bind(this, i)}
-          onMouseOver={this.onStarMouseOver.bind(this, i)}
-          onMouseOut={this.onStarMouseOut.bind(this, i)}
-          onFocus={this.onStarMouseOver.bind(this, i)}
-          onBlur={this.onStarMouseOut.bind(this, i)}
-          disabled={this.state.applyClicked || this.props.readOnly}
+          onClick={() => this.setState({ storedRating: this.state.tempRating })}
+          onMouseOver={this.onIconMouseOver.bind(this, i)}
+          onMouseOut={this.onIconMouseOut.bind(this)}
+          onFocus={this.onIconMouseOver.bind(this, i)}
+          onBlur={this.onIconMouseOut.bind(this)}
+          disabled={this.state.isApplied || this.props.readOnly}
           aria-label={`Rating_button_${i}`}
-          aria-disabled={this.state.applyClicked || this.props.readOnly}
+          aria-disabled={this.state.isApplied || this.props.readOnly}
         >
           <PfIcon id="star" label={`rating ${i}`} />
         </button>
@@ -96,14 +88,14 @@ export class PfRating extends React.Component<Props, State> {
             type="button"
             tabIndex={0}
             className={cx('pf-button-icon pf-rating__button', starButtonClass)}
-            onClick={this.handleStarEvent.bind(this, i)}
-            onMouseOver={this.onStarMouseOver.bind(this, i)}
-            onMouseOut={this.onStarMouseOut.bind(this, i)}
-            onFocus={this.onStarMouseOver.bind(this, i)}
-            onBlur={this.onStarMouseOut.bind(this, i)}
-            disabled={this.state.applyClicked || this.props.readOnly}
+            onClick={() => this.setState({ storedRating: this.state.tempRating })}
+            onMouseOver={this.onIconMouseOver.bind(this, i)}
+            onMouseOut={this.onIconMouseOut.bind(this)}
+            onFocus={this.onIconMouseOver.bind(this, i)}
+            onBlur={this.onIconMouseOut.bind(this)}
+            disabled={this.state.isApplied || this.props.readOnly}
             aria-label={item.label}
-            aria-disabled={this.state.applyClicked || this.props.readOnly}
+            aria-disabled={this.state.isApplied || this.props.readOnly}
           >
             <PfIcon id={item.iconType} label={item.label}/>
           </button>
@@ -119,12 +111,12 @@ export class PfRating extends React.Component<Props, State> {
 
     const contentClass = cx({
       'pf-rating-content': true,
-      'is-disabled': this.state.applyClicked
+      'is-disabled': this.state.isApplied
     });
 
     const renderRating = (
       <div className="pf-rating">
-        {this.state.applyClicked && modalBox}
+        {this.state.isApplied && modalBox}
         <div className={contentClass}>
           <h3 className="pf-rating-content__title">Rate this product</h3>
           <div className="h-spacing">
@@ -134,10 +126,10 @@ export class PfRating extends React.Component<Props, State> {
             className="pf-button"
             type="button"
             tabIndex={0}
-            onClick={() => this.handleApplyEvent()}
-            disabled={this.state.applyClicked}
+            onClick={() => this.setState({ isApplied: true })}
+            disabled={this.state.isApplied}
             aria-label="Rating apply button"
-            aria-disabled={this.state.applyClicked}
+            aria-disabled={this.state.isApplied}
           >
             Apply
           </button>
@@ -151,7 +143,7 @@ export class PfRating extends React.Component<Props, State> {
           <div className="l-grid__item">
             <h3 className="pf-rating-read-only__title">Average rating</h3>
           </div>
-          <div className="l-grid__item">
+          <div className="l-grid__item">``
             {starsButtonGroup}
           </div>
         </div>
