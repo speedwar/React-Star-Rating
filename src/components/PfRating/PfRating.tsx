@@ -38,14 +38,6 @@ export class PfRating extends React.Component<Props, State> {
     };
   }
 
-  onIconMouseOver(i: number) {
-    this.setState({ tempRating: i });
-  }
-
-  onIconMouseOut() {
-    this.setState({ tempRating: this.state.storedRating });
-  }
-
   public render() {
     // for-loop approach
     /* 
@@ -65,11 +57,9 @@ export class PfRating extends React.Component<Props, State> {
           type="button"
           tabIndex={0}
           className={cx('pf-button-icon pf-rating__button', buttonClass)}
-          onClick={() => this.setState({ storedRating: this.state.tempRating })}
-          onMouseOver={this.onIconMouseOver.bind(this, i)}
-          onMouseOut={this.onIconMouseOut.bind(this)}
-          onFocus={this.onIconMouseOver.bind(this, i)}
-          onBlur={this.onIconMouseOut.bind(this)}
+          onClick={() => this.setState({ storedRating: i })}
+          onMouseOver={() => this.setState({ tempRating: i })}
+          onMouseOut={() => this.setState({ tempRating: this.state.storedRating })}
           disabled={this.state.isApplied || this.props.readOnly}
           aria-label={`Rating_button_${i}`}
           aria-disabled={this.state.isApplied || this.props.readOnly}
@@ -99,18 +89,16 @@ export class PfRating extends React.Component<Props, State> {
             type="button"
             tabIndex={0}
             className={cx('pf-button-icon pf-rating__button', starButtonClass)}
-            onClick={() => this.setState({ storedRating: this.state.tempRating })}
-            onMouseOver={this.onIconMouseOver.bind(this, i)}
-            onMouseOut={this.onIconMouseOut.bind(this)}
-            onFocus={this.onIconMouseOver.bind(this, i)}
-            onBlur={this.onIconMouseOut.bind(this)}
+            onClick={() => this.setState({ storedRating: i })}
+            onMouseOver={() => this.setState({ tempRating: i })}
+            onMouseOut={() => this.setState({ tempRating: this.state.storedRating })}
             disabled={this.state.isApplied || this.props.readOnly}
             aria-label={item.label}
             aria-disabled={this.state.isApplied || this.props.readOnly}
           >
             <PfIcon id={item.iconType} label={item.label}/>
           </button>
-        )
+        );
       }
     );
 

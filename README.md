@@ -18,6 +18,8 @@ my-app/
         optimizsed/
       scss/
     components/
+      PfIcon/
+      PfRating/
     App.test.tsx
     App.tsx
     index.tsx
