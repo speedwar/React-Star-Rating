@@ -20,7 +20,12 @@ const ratingObj = [
   {id: 2, iconType: 'star', label: 'Rating Score Two button'},
   {id: 3, iconType: 'star', label: 'Rating Score Three button'},
   {id: 4, iconType: 'star', label: 'Rating Score Four button'},
-  {id: 5, iconType: 'star', label: 'Rating Score Five button'}
+  {id: 5, iconType: 'star', label: 'Rating Score Five button'},
+  {id: 6, iconType: 'star', label: 'Rating Score Six button'},
+  {id: 7, iconType: 'star', label: 'Rating Score Seven button'},
+  {id: 8, iconType: 'star', label: 'Rating Score Eight button'},
+  {id: 9, iconType: 'star', label: 'Rating Score Nine button'},
+  {id: 10, iconType: 'star', label: 'Rating Score Ten button'}
 ];
 
 export class PfRating extends React.Component<Props, State> {
@@ -42,7 +47,7 @@ export class PfRating extends React.Component<Props, State> {
   }
 
   public render() {
-    // for loop approach
+    // for-loop approach
     /* 
     const stars = [];
     const count = this.props.count;
@@ -77,8 +82,14 @@ export class PfRating extends React.Component<Props, State> {
 
     // Map with mockdata approach
     const starsButtonGroup = ratingObj.map((item, i) => {
+        i += 1; // NOTE: Forcing INDEX to be started from 1 instead 0.
+
+        if (this.props.count < i) {
+          return false;
+        }
+
         let starButtonClass;
-        if ((this.state.tempRating >= i && this.state.tempRating != null) || this.state.storedRating >= i) {
+        if ((this.state.tempRating >= i) || this.state.storedRating >= i) {
           starButtonClass = 'is-selected';
         }
 
@@ -143,7 +154,7 @@ export class PfRating extends React.Component<Props, State> {
           <div className="l-grid__item">
             <h3 className="pf-rating-read-only__title">Average rating</h3>
           </div>
-          <div className="l-grid__item">``
+          <div className="l-grid__item">
             {starsButtonGroup}
           </div>
         </div>

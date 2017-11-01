@@ -17,6 +17,8 @@ export default class App extends React.Component<Props, {}> {
         <div className="app-demo-container">
           <PfRating count={5} />
           <br />
+          <br />
+          <br />
           <PfRating count={5} rating={2} readOnly={true} />
         </div>
       </div>
