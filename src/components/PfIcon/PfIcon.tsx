@@ -2,7 +2,7 @@ import * as React from 'react';
 
 class Props {
   id: string;
-  label: string;
+  label?: string;
   style?: string;
   hasAriaHidden?: boolean;
 }
@@ -11,6 +11,10 @@ export class PfIcon extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
+
+  public static defaultProps: Partial<Props> = {
+      hasAriaHidden: true,
+  };
 
   public render() {
     /* 

@@ -96,7 +96,7 @@ export class PfRating extends React.Component<Props, State> {
             aria-label={item.label}
             aria-disabled={this.state.isApplied || this.props.readOnly}
           >
-            <PfIcon id={item.iconType} label={item.label}/>
+            <PfIcon id={item.iconType} />
           </button>
         );
       }
@@ -110,7 +110,7 @@ export class PfRating extends React.Component<Props, State> {
 
     const contentClass = cx({
       'pf-rating-content': true,
-      'is-disabled': this.state.isApplied
+      'is-applied': this.state.isApplied
     });
 
     const renderRating = (
