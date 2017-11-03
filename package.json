@@ -36,6 +36,7 @@
     "postcss": "^6.0.13",
     "postcss-cli": "^4.1.1",
     "postcss-loader": "^2.0.8",
+    "react-scripts-ts": "^2.8.0",
     "shell-csslib": "2.1.0",
     "svgo": "0.7.2",
     "stylelint": "^8.2.0",
